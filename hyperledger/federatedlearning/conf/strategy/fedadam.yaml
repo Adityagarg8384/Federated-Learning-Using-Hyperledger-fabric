@@ -1,0 +1,17 @@
+---
+
+_target_: flwr.server.strategy.FedAdam
+fraction_fit: 0.00001
+min_fit_clients: 2
+fraction_evaluate: 0.00001
+min_evaluate_clients: 2
+min_available_clients: 10
+on_fit_config_fn:
+  _target_: server.get_on_fit_config
+  config: ${config_fit}
+eta: 0.2
+eta_l: 0.01
+tau: 0.1
+initial_parameters:
+  _target_: model.models_to_parameters
+  model: ${model}
